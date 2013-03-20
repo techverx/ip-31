@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  quote: MyString
+  quote_category_id: 1
+  quote_by: MyString
+
+two:
+  quote: MyString
+  quote_category_id: 1
+  quote_by: MyString

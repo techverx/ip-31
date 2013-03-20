@@ -1,0 +1,48 @@
+
+<%= form_for(@font) do |f| %>
+<style type="text/css"> 
+  <%if @font.image?%>
+@font-face {  font-family:'<%= File.basename(@font.image.path).split(".").first %>';  src: url(<%= @font.image_url.to_s %>);}
+<% end %>
+</style>
+  <% if @font.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@font.errors.count, "error") %> prohibited this font from being saved:</h2>
+
+      <ul>
+      <% @font.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :product_code %>
+    <%= f.text_field :product_code %>
+  </div>
+  <div class="field">
+    <%= f.label :product_identifier %>
+    <%= f.text_field :product_identifier %>
+  </div>
+  <div class="field">
+    <%= f.label :iap_price %>
+    <%#= f.text_field :iap_price %>
+    <%= collection_select(:font, :iap_price_id, IapPrice.all, :id, :description, :prompt => true) %>
+  </div>
+  <div class="field">
+    <%#= f.label :image %>
+    <%#= f.text_field :image %>
+    <%= f.file_field :image %>
+  </div>
+<%if @font.image? %>
+<h2 style="background-color: white; font-family:<%= File.basename(@font.image.path).split(".").first  %>;width: 350px">Font Preview</h2>
+<% end %>
+<div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

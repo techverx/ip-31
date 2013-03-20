@@ -1,0 +1,27 @@
+<h5 align="left">Quotes</h5>
+<%= link_to 'Add New Quote', new_quote_path %>
+<hr/>
+<%= will_paginate @quotes, :class => 'apple_pagination' %>
+<br/>
+<table id="tblheader" class="table table-striped">
+  <tr>
+    <th>Quote</th>
+    <th>Quote category</th>
+    <th>Quote by</th>
+    <th></th>
+  </tr>
+
+  <% @quotes.each do |quote| %>
+      <tr>
+        <td><%= quote.quote %></td>
+        <td><%= quote.quote_category.title %></td>
+        <td><%= quote.quote_by %></td>
+        <!--<td><%#= link_to 'Show', quote %></td>-->
+        <td><%= link_to 'Edit', edit_quote_path(quote) %></td>
+        <!--<td><%#= link_to 'Destroy', quote, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+      </tr>
+  <% end %>
+</table>
+
+<hr/>
+<%= will_paginate @quotes, :class => 'apple_pagination' %>

@@ -1,0 +1,26 @@
+<% if @shape.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shape.errors.count, "error") %> prohibited this font from being saved:</h2>
+
+      <ul>
+        <% @shape.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<%= form_for(@shape) do |f| %>
+    <table  >
+      <tr><td><%=  label_tag 'name'%><%= f.text_field :name%></td></tr>
+      <tr><td><%=  label_tag 'Product Code'%><%= f.text_field :product_code%></td></tr>
+      <tr><td><%=  label_tag 'Product Identifier'%><%= f.text_field :product_identifier%></td></tr>
+      <tr><td><%=  label_tag 'IAP Price'%><%= collection_select(:shape, :iap_price_id, IapPrice.all, :id, :description, :prompt => true) %><%#= f.text_field :iap_price%></td> </tr>
+
+      <tr><td><%=radio_button_tag 'rdo_upload_type', 'individual',true%>   Individual  <%=radio_button_tag 'rdo_upload_type', 'zip'%> Upload Zip </td> </tr><br/><br/>
+      <tr class="upload_individual" ><td> <%= f.file_field :image1 %></td></tr>
+      <tr class="upload_individual" ><td> <%= f.file_field :image2 %></td></tr>
+      <tr class="upload_individual" ><td> <%= f.file_field :image3 %></td></tr>
+      <tr class="upload_zip" style="display: none"><td> <%= f.file_field :zip_file%></td></tr>
+      <tr><td><%= f.submit 'Save',:class=>'btn btn-small btn-primary'%></td></tr>
+    </table>
+<% end %>

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @font.name %>
+</p>
+
+<p>
+  <b>Product code:</b>
+  <%= @font.product_code %>
+</p>
+
+<p>
+  <b>Product identifier:</b>
+  <%= @font.product_identifier %>
+</p>
+
+<p>
+  <b>Iap price:</b>
+  <%= @font.iap_price %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%= @font.image %>
+</p>
+
+
+<%= link_to 'Edit', edit_font_path(@font) %> |
+<%= link_to 'Back', fonts_path %>

@@ -1,0 +1,42 @@
+<br xmlns="http://www.w3.org/1999/html"/>
+<%= radio_button_tag 'rdotype', 'manual', true %>   Add Manual
+<%= radio_button_tag 'rdotype', 'import' %> Quote Import<br/><br/>
+<div id="add_manual">
+  <%= form_for(@quote) do |f| %>
+      <% if @quote.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@quote.errors.count, "error") %> prohibited this quote from being saved:</h2>
+            <ul>
+              <% @quote.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <table>
+        <tr>
+          <td><%= label_tag 'Category' %><%= collection_select(:quote, :quote_category_id, QuoteCategory.all, :id, :title, :prompt => true) %></td>
+        </tr>
+        <tr>
+          <td><%= label_tag 'Quote By' %><%= f.text_field :quote_by %></td>
+        </tr>
+        <tr>
+          <td><%= label_tag 'quote' %><%= f.text_area :quote, :id => 'quote_text_area' %></td>
+        </tr>
+        <tr>
+          <td><%= f.submit 'Save', :class => 'btn btn-small btn-primary' %></td>
+        </tr>
+      </table>
+
+  <% end %>
+</div>
+
+<div id="quote_import" style="display: none;text-align: center">
+  <%= form_tag(importquotes_quotes_path, :method => :get, :remote => true) do %>
+      <div style="display: inline-block"><%= label_tag 'Category :', nil, :class => 'label_inline' %> <%= select_tag 'quote_category_list', options_for_select(@quote_categories.collect { |u| [u.title, u.id] }) %></div>
+      <div style="display: inline-block"><%= label_tag 'Quote By :', nil, :class => 'label_inline' %> <%= select_tag 'quote_by_list', options_for_select(Quote.all.collect { |u| [u.quote_by, u.id] }) %>      </div>
+      <div style="text-align: center"> <%#=link_to "Quote Import", importquotes_quotes_path , :class=>'btn btn-small btn-primary', :remote=>true %> </div>
+      <div id="myquotes"></div>  </br>
+      <%= submit_tag "Quote Import" , :class=>'btn btn-large btn-primary'%>
+  <% end %>
+</div>

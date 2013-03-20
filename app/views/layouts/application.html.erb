@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+  <head>
+    <title><%= "INSTAPOSTER" %></title>
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container pull-left">
+          <%= link_to image_tag('home.png')+' Instaposter', root_path, id: "logo",:style=>'font-size: x-large;margin-left: 120px;' %>
+          <nav>
+            <ul class="nav pull-right" style="display:inline">
+              <li><%= link_to  image_tag('lines.png')+" Background", backgrounds_path, :style=>'font-size:large;'%></li>
+              <li><%= link_to  image_tag('lines.png')+" Fonts",  fonts_path ,:style=>'font-size:large';%></li>
+              <li><%= link_to  image_tag('lines.png')+" Shapes", shapes_path ,:style=>'font-size:large';%></li>
+              <li><%= link_to  image_tag('lines.png')+" Quotes", quotes_path ,:style=>'font-size:large';%></li>
+              <li><%#= link_to  image_tag('lines.png')+" Reports", '#',:style=>'font-size:large';%></li>
+            <% if user_signed_in? %>
+              <li><%= link_to('Logout', destroy_user_session_path, :method => 'delete') %></li>            </ul>
+            <% end  %>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+     <div class="center hero-unit" style="margin-top: 100px;padding: 20px;"><% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+       <%= yield %>                                  </br></br>
+       <div style="text-align: right" >  Powered by:</br>
+       <strong >Instaposter</strong >
+       </div>
+</div>
+
+    </div> 
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<h5>Shapes</h5>
+<%=link_to 'Add New Shape',new_shape_path%>
+<hr/>
+<%= will_paginate @shapes,:class=>'apple_pagination' %>
+<br/>
+
+<table id="tblheader" class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Product code</th>
+    <th>Product identifier</th>
+    <th>Iap price</th>
+    <th>Link</th>
+    <th>Actions</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @shapes.each do |shape| %>
+  <tr>
+    <td><%= shape.name %></td>
+    <td><%= shape.product_code %></td>
+    <td><%= shape.product_identifier %></td>
+    <td><%= shape.iap_price.description %></td>
+    <td><%= link_to 'link', shape_path(shape) %></td>
+    <td><%= link_to (shape.active_yn==true ? 'Deactive |' : 'Active |'), active_deactive_shape_path(shape) %>
+    <%#= link_to download_font_path(shape), :id => 'download_zip', :remote=>true%>
+    <%= link_to 'Edit |',edit_shape_path(shape) %>
+    <%= link_to 'Delete', shape, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<hr />
+<%= will_paginate @shapes,:class=>'apple_pagination' %>
+
+

@@ -1,0 +1,8 @@
+<p>
+  <b>Image 1:</b>
+  <%= link_to image_tag(@background.image_url(:thumb).to_s),@background.image_url%>
+  <b>Image 2:</b>
+  <%= link_to image_tag(@background.image2_url(:thumb).to_s),@background.image2_url%>
+  <b>Image 3:</b>
+  <%= link_to image_tag(@background.image3_url(:thumb).to_s),@background.image3_url%>
+</p>

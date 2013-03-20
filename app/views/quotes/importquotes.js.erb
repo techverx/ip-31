@@ -1,0 +1,11 @@
+node = document.getElementById('myquotes')
+while (node.hasChildNodes()) {
+    node.removeChild(node.lastChild);
+}
+
+<% count = @quote_list.count %>
+<% @quote_list.each do |f| %>
+$("#myquotes").append("<%= escape_javascript(render(:partial => 'quoteimport', :locals => {:quote=> f.to_s, :count => count.to_s })) %>")
+<% count = count-1 %>
+<% end %>
+

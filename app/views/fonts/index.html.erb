@@ -1,0 +1,32 @@
+<h5>Fonts</h5>
+<%=link_to 'Add New Font',new_font_path%>
+<hr/>
+<%= will_paginate @fonts,:class=>'apple_pagination'%>
+<br/>
+<table id="tblheader" class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Product code</th>
+    <th>Product identifier</th>
+    <th>Iap price</th>
+    <th>Image</th>
+    <th>Actions</th>
+  </tr>
+
+<% @fonts.each do |font| %>
+  <tr>
+    <td><%= font.name %></td>
+    <td><%= font.product_code %></td>
+    <td><%= font.product_identifier %></td>
+    <td><%= font.iap_price.description %></td>
+    <td><%= link_to 'link', '' %></td> 
+    <td><%= link_to (font.active_yn==true ? 'Deactive |' : 'Active |'), active_deactive_font_path(font)%>
+    <%= link_to 'Edit |',edit_font_path(font) %>
+    <%= link_to 'Delete', font, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%= will_paginate @fonts,:class=>'apple_pagination'%>
+

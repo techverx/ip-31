@@ -1,0 +1,30 @@
+
+<h5 align="left" >Background</h5>
+<%=link_to 'Add New Background',new_background_path%>
+<hr/>
+<%= will_paginate @backgrounds,:class=>'apple_pagination' %>
+<br/>
+<table id="tblheader" class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Product Code</th>
+    <th>Product Identifier</th>
+    <th>IAP Price</th>
+    <th>Preview</th>
+    <th>Actions</th>
+  </tr>
+  <% @backgrounds.each do |bg| %>
+  <tr>
+    <td><%= bg.name%></td>
+    <td><%= bg.product_code%></td>
+    <td><%= bg.product_identifier%></td>
+    <td><%= bg.iap_price.description%></td>
+    <td><%= link_to 'link', background_path(bg) %> | <%= link_to 'Zip', download_background_path(bg)%></td>
+    <td><%= link_to (bg.active_yn==true ? 'Deactive |' : 'Active |'), active_deactive_background_path(bg) %>
+    <%= link_to 'Edit |',edit_background_path(bg) %>
+    <%= link_to 'Delete', bg, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <% end %>
+</table>
+<br/>
+<%= will_paginate @backgrounds,:class=>'apple_pagination' %>

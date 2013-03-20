@@ -1,0 +1,18 @@
+<p>
+  <b>Image 1:</b>
+  <%= link_to image_tag(@shape.image1_url(:thumb).to_s),@shape.image1_url %>
+</p>
+<p>
+  <b>Image 2:</b>
+  <%=link_to  image_tag(@shape.image2_url(:thumb).to_s) ,@shape.image2_url %>
+</p>
+<p>
+  <b>Image 3:</b>
+  <%=link_to image_tag(@shape.image3_url(:thumb).to_s), @shape.image3_url %>
+</p>
+
+
+
+<br/>
+
+<%= link_to 'Back', shapes_path %>

@@ -1,0 +1,21 @@
+<%= form_for(@quote_category) do |f| %>
+  <% if @quote_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@quote_category.errors.count, "error") %> prohibited this quote_category from being saved:</h2>
+
+      <ul>
+      <% @quote_category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

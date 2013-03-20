@@ -1,0 +1,21 @@
+<%#  label_tag 'name', nil, :class => 'small_label'
+ <label for="name" class="small_label">Name</label>
+%>
+
+<hr/>
+<%= form_for(@background) do |f| %>
+<table  >
+    <tr><td><%=  label_tag 'name'%><%= f.text_field :name%></td></tr>
+    <tr><td><%=  label_tag 'Product Code'%><%= f.text_field :product_code%></td></tr>
+    <tr><td><%=  label_tag 'Product Identifier'%><%= f.text_field :product_identifier%></td></tr>
+    <tr><td><%= label_tag 'IAP Price' %><%= collection_select(:background, :iap_price_id, IapPrice.all, :id, :description, :prompt => true) %><%#= f.text_field :iap_price%></td> </tr>
+
+  <tr><td><%=radio_button_tag 'rdo_upload_type', 'individual',true%>   Individual  <%=radio_button_tag 'rdo_upload_type', 'zip'%> Upload Zip </td> </tr><br/><br/>
+    <tr class="upload_individual" ><td> <%= f.file_field :image %></td></tr>
+    <tr class="upload_individual" ><td> <%= f.file_field :image2 %></td></tr>
+    <tr class="upload_individual" ><td> <%= f.file_field :image3 %></td></tr>
+    <tr class="upload_zip" style="display: none"><td> <%= f.file_field :zip_file%></td></tr>
+    <tr><td><%= f.submit 'Save',:class=>'btn btn-small btn-primary'%></td></tr>
+</table>
+
+<% end %>
